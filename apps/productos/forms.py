@@ -9,18 +9,21 @@ class ProductoForm(forms.ModelForm):
 			'nombre',
 			'descripcion',
 			'cantidad',
+			'precio'
 		]
 
 		labels = {
 			'nombre' : 'Nombre',
 			'descripcion' : 'Descripcion',
 			'cantidad' : 'Cantidad',
+			'precio' : 'Precio'
 		}
 
 		widgets = {
 			'nombre' : forms.TextInput(attrs={'class' : 'form-control'}),
 			'descripcion' : forms.TextInput(attrs={'class' : 'form-control'}),
 			'cantidad' : forms.TextInput(attrs={'class' : 'form-control'}),
+			'precio' : forms.TextInput(attrs={'class' : 'form-control'}),
 		}
 
 class Categoria1Form(forms.ModelForm):
