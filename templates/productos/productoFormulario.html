@@ -1,0 +1,25 @@
+{% extends 'base/index.html' %}
+{% load staticfiles %}
+
+{% block title %}
+	Registro
+{% endblock %}
+
+{% block extracss %}
+
+{% endblock %}
+
+{% block content %}
+<divc class="container">
+	<div class = "row justify-content-center">
+		<div class = "row-8">
+			<h1>Registro</h1>
+			<form method="post">
+				{% csrf_token %}
+				{{ form.as_p}}
+				<button type="submit" class="btn btn-success">Enviar</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

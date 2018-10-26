@@ -1,0 +1,21 @@
+
+{% extends 'base/index.html' %}
+
+{% block title %}
+Productos
+{% endblock %}
+
+{% block content %}
+Esta es la lista de los productos
+
+<ol>
+	{% for producto in productos %} 
+	<li> <p>{{producto.nombre}}   #Descripcion:{{producto.descripcion}}  #Cantidad:{{producto.cantidad}}</p> </li>
+{% empty %}
+	<p>No hay elementos</p>
+{% endfor %}
+</ol>
+
+
+{% endblock %}
+

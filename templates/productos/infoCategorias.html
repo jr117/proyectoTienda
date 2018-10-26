@@ -1,0 +1,78 @@
+<divc class="container"></div>
+
+<h1>Productos de categoria 1:</h1>
+	<a href="{% url 'productos:nvoC1' %}" class="btn mb-3">
+			Nuevo registro
+	</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Producto ID</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Descripcion</th>
+			<th scope="col">Cantidad</th>
+			<th scope="col">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for objeto in categoria1 %}
+		<tr>
+			<th scope="row">{{objeto.producto}}</th>
+			<td>{{objeto.producto.nombre}}</td>
+			<td>{{objeto.producto.descripcion}}</td>
+			<td>{{objeto.producto.cantidad}}</td>
+			<td>
+				<a href="{% url 'productos:editC1' objeto.id %}" class="btn mb-3">
+					Editar
+				</a>
+				<a href="{% url 'productos:elimC1' objeto.id %}" class="btn mb-3">
+					Eliminar
+				</a>
+			</td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="6">No hay elementos</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+<h1>Productos de categoria 2:</h1>
+	<a href="{% url 'productos:nvoC2' %}" class="btn mb-3">
+			Nuevo registro
+	</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Producto ID</th>
+			<th scope="col">Nombre</th>
+			<th scope="col">Descripcion</th>
+			<th scope="col">Cantidad</th>
+			<th scope="col">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for objeto in categoria2 %}
+		<tr>
+			<th scope="row">{{objeto.producto}}</th>
+			<td>{{objeto.producto.nombre}}</td>
+			<td>{{objeto.producto.descripcion}}</td>
+			<td>{{objeto.producto.cantidad}}</td>
+			<td>
+				<a href="{% url 'productos:editC2' objeto.id %}" class="btn mb-3">
+					Editar
+				</a>
+				<a href="{% url 'productos:elimC2' objeto.id %}" class="btn mb-3">
+					Eliminar
+				</a>
+			</td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="6">No hay elementos</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>

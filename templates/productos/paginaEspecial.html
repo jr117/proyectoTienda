@@ -1,0 +1,33 @@
+{% extends 'base/index.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Categorias
+{% endblock %}
+
+{% block extracss %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style_special.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<li>Productos de categoria 1:</li>
+<ol>
+	{% for categoria in categoria1 %} 
+	<li><p>{{categoria.producto}}</p></li>
+{% empty %}
+	<p>No hay elementos</p>
+{% endfor %}
+</ol>
+
+<li>Productos de categoria 2:</li>
+<ol>
+	{% for categoria in categoria2 %} 
+	<li><p>{{categoria.producto}}</p></li>
+{% empty %}
+	<p>No hay elementos</p>
+{% endfor %}
+</ol>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base/index.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Productos
+{% endblock %}
+
+{% block header %}
+PRODUCTOS
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<a href="{% url 'productos:nuevoRegistro' %}" class="btn mb-3">
+		Nuevo registro
+	</a>
+	{% include 'productos/infoProductos.html' %}
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
