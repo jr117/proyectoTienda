@@ -1,0 +1,16 @@
+{% extends 'base/index.html' %}
+
+{% block title %}
+Error Cantidad
+{% endblock %}
+
+{% block content %}
+	<h3 class="text-center">No hay suficiente cantidad en existencia para su compra</h3>
+	<div class="container-center">
+	  <a href="{% url 'productos:principal' %}" class="btn mb-3">
+					Regresar
+				</a>
+	</div>
+	
+{% endblock %}
+

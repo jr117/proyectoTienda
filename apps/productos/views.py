@@ -3,12 +3,15 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 from apps.productos.models import Producto as PR
 from apps.productos.models import Categoria1, Categoria2
-from apps.productos.forms import ProductoForm, Categoria1Form, Categoria2Form
+from apps.productos.forms import ProductoForm, Categoria1Form, Categoria2Form, VentasForm
 
 # Create your views here.
 
 def principal(request):
 	return render(request, 'base/index.html')
+
+def errorCant(request):
+	return render(request, 'productos/err.html')
 
 def listado(request):
 	contexto = {
@@ -35,6 +38,11 @@ class Producto(ListView):
 	queryset = PR.objects.all()
 	template_name = 'productos/pagProd.html'
 
+class Ventas(ListView):
+	model = PR
+	queryset = PR.objects.all()
+	template_name = 'productos/pagVentas.html'
+
 #VIEWS PARA AGREGAR, EDITAR Y ELIMINAR PRODUCTOS
 
 def nuevoRegistro(request):
@@ -57,6 +65,22 @@ def editarRegistro(request, idProducto):
 			form.save()
 		return redirect('productos:verProductos')
 	return render(request, 'productos/productoFormulario.html', {'form' : form})
+
+def ventForm(request, idProducto):
+	producto = PR.objects.get(id = idProducto)
+	cant = producto.cantidad
+	producto.cantidad = 0
+	if (request.method == 'GET'):
+		form = VentasForm(instance = producto)
+	else:
+		form = VentasForm(request.POST, instance=producto)
+		if form.is_valid():
+			producto.cantidad = cant - producto.cantidad
+			if producto.cantidad < 0:
+				return redirect('productos:errorCantidad')
+			form.save()
+		return redirect('productos:principal')
+	return render(request, 'productos/ventaFormulario.html', {'form' : form})
 
 def eliminarRegistro(request, idProducto):
 	producto =  PR.objects.get(id = idProducto)
