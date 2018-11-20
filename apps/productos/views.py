@@ -75,10 +75,14 @@ def ventForm(request, idProducto):
 	else:
 		form = VentasForm(request.POST, instance=producto)
 		if form.is_valid():
+			precio = producto.cantidad
 			producto.cantidad = cant - producto.cantidad
 			if producto.cantidad < 0:
 				return redirect('productos:errorCantidad')
 			form.save()
+		precio = float(precio) * producto.precio
+		contexto = {'precio': precio}
+		return render(request, 'productos/pago.html', contexto)
 		return redirect('productos:principal')
 	return render(request, 'productos/ventaFormulario.html', {'form' : form})
 
